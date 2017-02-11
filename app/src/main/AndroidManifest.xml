@@ -8,17 +8,21 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".presentation.MemberActivity" />
+        <activity android:name=".presentation.SignupActivity" />
+        <activity android:name=".presentation.SigninActivity">
 
         </activity>
-        <activity android:name=".presentation.MemberActivity" />
-        <activity android:name=".presentation.SignupActivity">
+        <activity android:name=".presentation.DetailActivity" />
+        <activity android:name=".presentation.UpdateActivity" />
+        <activity android:name=".presentation.ListActivity" />
+        <activity android:name=".presentation.MypageActivity" />
+        <activity android:name=".presentation.ScheduleActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".presentation.SigninActivity">
         </activity>
     </application>
 
