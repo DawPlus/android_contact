@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,11 +12,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
             android:gravity="center"
             android:text="Schedule"
-            />
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/tvToday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Today"
+            android:textSize="10dp" />
     </LinearLayout>
+
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -25,16 +33,14 @@
             android:id="@+id/rbCalendar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Set Date"
-            />
+            android:text="Set Date" />
 
 
         <RadioButton
             android:id="@+id/rbClock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Set Time"
-            />
+            android:text="Set Time" />
     </RadioGroup>
 
     <LinearLayout
@@ -51,104 +57,87 @@
             <CalendarView
                 android:id="@+id/cvSet"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-            </CalendarView>
+                android:layout_height="match_parent"></CalendarView>
+
             <TimePicker
                 android:id="@+id/tpSet"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:timePickerMode="spinner"
-                >
+                android:timePickerMode="spinner">
 
             </TimePicker>
-
 
 
         </FrameLayout>
 
 
-
     </LinearLayout>
 
 
-
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/btSet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="예약시간 :"
-            />
+            android:text="예약시간 :" />
 
 
         <TextView
             android:id="@+id/tvYear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0000"
-            />
+            android:text="0000" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-"
-            />
+            android:text="-" />
 
 
         <TextView
             android:id="@+id/tvMonth"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00"
-            />
+            android:text="00" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="-"
-            />
+            android:text="-" />
 
 
         <TextView
             android:id="@+id/tvDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00"
-            />
+            android:text="00" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" "
-            />
+            android:text=" " />
 
 
         <TextView
             android:id="@+id/tvHour"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00"
-            />
+            android:text="00" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=":"
-            />
+            android:text=":" />
 
         <TextView
             android:id="@+id/tvMinute"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00"
-            />
-
-
-
+            android:text="00" />
     </LinearLayout>
 
 </LinearLayout>
