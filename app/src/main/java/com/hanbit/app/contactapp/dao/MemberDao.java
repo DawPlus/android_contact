@@ -110,12 +110,13 @@ public class MemberDao extends SQLiteOpenHelper {
 
         }else{
             member.setId("fail");
+
         }
 
-        Log.d(cursor.getString(0) ," <---- result");
+
         return member;
 
-        
+
 
     }
 
@@ -133,11 +134,40 @@ public class MemberDao extends SQLiteOpenHelper {
     //READ ALL
     public ArrayList<MemberBean> selectAll() {
 
+
+        ArrayList<MemberBean> list = new ArrayList<MemberBean>();
+
         String sql = "SELECT  id, pass, name,email, phone, addr, profile "
                 + " FROM Member";
 
 
-        return new ArrayList<MemberBean>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+
+
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+        do{
+            MemberBean member = new MemberBean();
+            member.setId(cursor.getString(0));
+
+            member.setPass(cursor.getString(1));
+            member.setName(cursor.getString(2));
+            member.setEmail(cursor.getString(3));
+            member.setPhone(cursor.getString(4));
+            member.setAddr(cursor.getString(5));
+            member.setProfile(cursor.getString(6));
+
+            list.add(member);
+        }while(cursor.moveToNext());
+
+            Log.d("member Size",String.valueOf(list.size()));
+
+
+
+
+        return list;
     }
 
     //UPDATE

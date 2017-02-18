@@ -23,6 +23,7 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
@@ -45,28 +46,22 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
 
             case R.id.btLogin:
 
-                String id = etID.getText().toString();
-                String pass = etPass.getText().toString();
+                MemberBean member = new MemberBean();
+                member.setId(etID.getText().toString());
+                member.setPass(etPass.getText().toString());
 
-                member.setId(id);
-                member.setPass(pass);
-
-                MemberBean result = service.findOne(member);
-
-
-                if("".equals(id) || "".equals(pass)){
-                    return;
-                }
-
-                if(result.getPass().equals(pass)){
+                if(service.login(member)){
+                    //Toast.makeText(SigninActivity.this , "로그인 성공" , Toast.LENGTH_LONG).show();
                     startActivity(new Intent(SigninActivity.this, ListActivity.class));
-
                 }else{
-                    startActivity(new Intent(SigninActivity.this, SigninActivity.class));
+                    Toast.makeText(SigninActivity.this , "로그인 실패" , Toast.LENGTH_LONG).show();
+                    //startActivity(new Intent(SigninActivity.this, SigninActivity.class));
                 }
 
-                Toast.makeText(SigninActivity.this , "Go To Sign In" , Toast.LENGTH_LONG).show();
+/*
+
                 startActivity(new Intent(SigninActivity.this, DetailActivity.class));
+*/
                 break;
             case R.id.btCancel:
 

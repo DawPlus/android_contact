@@ -30,6 +30,12 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
+    public boolean login(MemberBean member) {
+        MemberBean result = this.findOne(member);
+        return (!member.getId().equals("fail") && member.getPass().equals(member.getPass()));
+    }
+
+    @Override
     public ArrayList<MemberBean> findSome(String keyword) {
         return null;
     }

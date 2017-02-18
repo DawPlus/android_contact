@@ -50,10 +50,8 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
 
             case R.id.btSubmit:
-                member.setAddr(etAddr.getText().toString());
-
-
-                service.add(member);
+               // member.setAddr(etAddr.getText().toString());
+           //     service.add(member);
                 break;
             case R.id.btCancel:
                 break;

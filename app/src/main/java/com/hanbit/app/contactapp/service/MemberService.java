@@ -10,17 +10,19 @@ import java.util.ArrayList;
 public interface MemberService {
 
     //CREATE
-    void add(MemberBean bean);
+    public void add(MemberBean bean);
     //READ ONE
-    MemberBean findOne(MemberBean bean);
+    public MemberBean findOne(MemberBean bean);
+    public boolean login(MemberBean bean);
+
     //READ SOME
-    ArrayList<MemberBean> findSome(String keyword);
+    public ArrayList<MemberBean> findSome(String keyword);
     //READ ALL
-    ArrayList<MemberBean> list();
+    public ArrayList<MemberBean> list();
     //UPDATE
-    void update(MemberBean bean);
+    public void update(MemberBean bean);
     //DELETE
-    void delete(MemberBean bean);
+    public void delete(MemberBean bean);
 
 
 }
