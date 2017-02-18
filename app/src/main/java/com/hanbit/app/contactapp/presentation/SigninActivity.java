@@ -9,18 +9,25 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.hanbit.app.contactapp.R;
+import com.hanbit.app.contactapp.domain.MemberBean;
+import com.hanbit.app.contactapp.service.MemberService;
+import com.hanbit.app.contactapp.service.MemberServiceImpl;
 
 public class SigninActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     EditText etID, etPass;
     Button btLogin, btCancel;
+    MemberService service ;
+    MemberBean member;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
 
+        service = new MemberServiceImpl(this.getApplicationContext());
+        member = new MemberBean();
 
         etID = (EditText) findViewById(R.id.etID);
         etPass = (EditText) findViewById(R.id.etPass);
@@ -37,6 +44,27 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
 
             case R.id.btLogin:
+
+                String id = etID.getText().toString();
+                String pass = etPass.getText().toString();
+
+                member.setId(id);
+                member.setPass(pass);
+
+                MemberBean result = service.findOne(member);
+
+
+                if("".equals(id) || "".equals(pass)){
+                    return;
+                }
+
+                if(result.getPass().equals(pass)){
+                    startActivity(new Intent(SigninActivity.this, ListActivity.class));
+
+                }else{
+                    startActivity(new Intent(SigninActivity.this, SigninActivity.class));
+                }
+
                 Toast.makeText(SigninActivity.this , "Go To Sign In" , Toast.LENGTH_LONG).show();
                 startActivity(new Intent(SigninActivity.this, DetailActivity.class));
                 break;

@@ -1,5 +1,8 @@
 package com.hanbit.app.contactapp.service;
 
+import android.content.Context;
+
+import com.hanbit.app.contactapp.dao.MemberDao;
 import com.hanbit.app.contactapp.domain.MemberBean;
 
 import java.util.ArrayList;
@@ -8,14 +11,22 @@ import java.util.ArrayList;
  * Created by hanbit on 2017-02-04.
  */
 public class MemberServiceImpl implements MemberService{
-    @Override
-    public void add(MemberBean bean) {
+
+    MemberDao dao;
+
+    public MemberServiceImpl(Context context) {
+
+        dao = new MemberDao(context);
 
     }
 
     @Override
+    public void add(MemberBean bean) {
+    }
+    @Override
     public MemberBean findOne(MemberBean bean) {
-        return null;
+
+     return   dao.SelectOne(bean);
     }
 
     @Override

@@ -38,7 +38,7 @@ public class MemberActivity extends AppCompatActivity implements View.OnClickLis
         btDelte.setOnClickListener(this);
 
         member = new MemberBean();
-        service = new MemberServiceImpl();
+        service = new MemberServiceImpl(this.getApplicationContext());
 
     }
 
