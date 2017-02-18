@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * Created by hanbit on 2017-02-04.
  */
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 
     MemberDao dao;
 
@@ -22,11 +22,13 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public void add(MemberBean bean) {
+        dao.add(bean);
     }
+
     @Override
     public MemberBean findOne(MemberBean bean) {
 
-     return   dao.SelectOne(bean);
+        return dao.SelectOne(bean);
     }
 
     @Override
@@ -37,21 +39,23 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public ArrayList<MemberBean> findSome(String keyword) {
-        return null;
+        return dao.selectSome(keyword);
     }
 
     @Override
     public ArrayList<MemberBean> list() {
-        return null;
+        return dao.selectAll();
     }
 
     @Override
     public void update(MemberBean bean) {
+        dao.update(bean);
 
     }
 
     @Override
     public void delete(MemberBean bean) {
+        dao.delete(bean);
 
     }
 }

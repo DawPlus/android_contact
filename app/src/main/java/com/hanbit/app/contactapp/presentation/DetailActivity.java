@@ -5,24 +5,49 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hanbit.app.contactapp.R;
+import com.hanbit.app.contactapp.domain.MemberBean;
+import com.hanbit.app.contactapp.service.MemberService;
+import com.hanbit.app.contactapp.service.MemberServiceImpl;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView tvID,  tvName, tvPhone,  tvAddr;
-    Button btnMessage, btPhone, btLocation , btDelete;
+    TextView tvID, tvName, tvPhone, tvAddr;
+    Button btnMessage, btPhone, btLocation, btDelete;
     Button btUpdate, btList;
+    MemberService service;
+    MemberBean member;
+    ImageView ivProfile;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        // Intent
+        Intent intent = this.getIntent();
+        id = intent.getExtras().getString("member_id");
+        member = new MemberBean();
+
+        // Service
+        service = new MemberServiceImpl(this.getApplicationContext());
+        // Member
+        member.setId(id);
+        member = service.findOne(member);
+
+
+
+
+        // Activity 초기화
         btUpdate = (Button) findViewById(R.id.btUpdate);
         btList = (Button) findViewById(R.id.btList);
+
+        ivProfile = (ImageView) findViewById(R.id.ivProfile);
 
         tvID = (TextView) findViewById(R.id.tvID);
         tvName = (TextView) findViewById(R.id.tvName);
@@ -30,7 +55,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         tvAddr = (TextView) findViewById(R.id.tvAddr);
 
         btnMessage = (Button) findViewById(R.id.btnMessage);
-        btDelete = (Button)findViewById(R.id.btDelete);
+        btDelete = (Button) findViewById(R.id.btDelete);
         btPhone = (Button) findViewById(R.id.btPhone);
         btLocation = (Button) findViewById(R.id.btLocation);
         btUpdate = (Button) findViewById(R.id.btUpdate);
@@ -45,6 +70,19 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         btUpdate.setOnClickListener(this);
         btList.setOnClickListener(this);
 
+
+        tvID.setText(member.getId());
+        tvName.setText(member.getName());
+        tvPhone.setText(member.getPhone());
+        tvAddr.setText(member.getAddr());
+
+        int temp = getResources().getIdentifier(this.getPackageName()+":drawable/default_profile",null,null);
+
+
+        ivProfile.setImageDrawable(getResources()
+                                .getDrawable(temp, this.getApplicationContext().getTheme()));
+
+
     }
 
     @Override
@@ -52,20 +90,19 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
         switch (v.getId()) {
 
-            case R.id.btnMessage :
+            case R.id.btnMessage:
                 break;
 
-            case R.id.btPhone :
+            case R.id.btPhone:
                 break;
 
-            case R.id.btLocation :
+            case R.id.btLocation:
                 break;
 
             case R.id.btUpdate:
                 Toast.makeText(DetailActivity.this, "go To SignIn", Toast.LENGTH_SHORT).show();
-
                 Intent intent = new Intent(DetailActivity.this, UpdateActivity.class);
-                intent.putExtra("id", "hong");
+                intent.putExtra("id", id);
                 startActivity(intent);
                 break;
 

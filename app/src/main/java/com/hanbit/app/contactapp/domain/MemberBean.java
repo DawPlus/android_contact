@@ -62,4 +62,17 @@ public class MemberBean {
     public void setAddr(String addr) {
         this.addr = addr;
     }
+
+    @Override
+    public String toString() {
+        return "MemberBean{" +
+                "id='" + id + '\'' +
+                ", pass='" + pass + '\'' +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", profile='" + profile + '\'' +
+                ", addr='" + addr + '\'' +
+                '}';
+    }
 }

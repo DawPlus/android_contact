@@ -1,5 +1,6 @@
 package com.hanbit.app.contactapp.presentation;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -30,8 +31,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         etPass = (EditText) findViewById(R.id.etPass);
         etName = (EditText) findViewById(R.id.etName);
         etPhone = (EditText) findViewById(R.id.etPhone);
-        etPass = (EditText) findViewById(R.id.etPass);
-        etAddr = (EditText) findViewById(R.id.etAddr);
+         etAddr = (EditText) findViewById(R.id.etAddr);
 
         btSubmit = (Button) findViewById(R.id.btSubmit);
         btCancel = (Button) findViewById(R.id.btCancel);
@@ -50,8 +50,16 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
 
             case R.id.btSubmit:
-               // member.setAddr(etAddr.getText().toString());
-           //     service.add(member);
+                member.setAddr(etAddr.getText().toString());
+                member.setId(etID.getText().toString());
+                member.setPass(etPass.getText().toString());
+                member.setPhone(etPhone.getText().toString());
+                member.setName(etName.getText().toString());
+                service.add(member);
+
+                startActivity(new Intent(SignupActivity.this, SigninActivity.class));
+
+
                 break;
             case R.id.btCancel:
                 break;
