@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hanbit.app.contactapp.R;
 import com.hanbit.app.contactapp.domain.MemberBean;
@@ -34,6 +33,9 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
         service = new MemberServiceImpl(this.getApplicationContext());
         Intent intent = this.getIntent();
         id = intent.getExtras().getString("id");
+
+
+
         member.setId(id);
         member = service.findOne(member);
 
@@ -57,8 +59,8 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
         etPhone.setText(member.getPhone());
 
 
-
-    btUpdate.setOnClickListener(this);
+        // OnclickListener
+        btUpdate.setOnClickListener(this);
         btList.setOnClickListener(this);
 
 
@@ -70,22 +72,21 @@ public class UpdateActivity extends AppCompatActivity implements View.OnClickLis
 
             case R.id.btUpdate:
 
-                Toast.makeText(this,"클릭",Toast.LENGTH_SHORT);
-                MemberBean newMember = new MemberBean();
+                member.setId(id);
+                member.setName(etName.getText().toString());
+                member.setPass(etPass.getText().equals("") ? member.getPass() :etPass.getText().toString());
+                member.setPhone(etPhone.getText().equals("") ? member.getPhone() :etPhone.getText().toString());
+                member.setAddr(etAddr.getText().equals("") ? member.getAddr() :etAddr.getText().toString());
+                service.update(member);
 
-                newMember.setId(id);
-                newMember.setName(etName.getText().toString());
-                newMember.setPass(etPass.getText().toString());
-                newMember.setPhone(etPhone.getText().toString());
-                newMember.setAddr(etAddr.getText().toString());
-                service.update(newMember);
-                Log.d("회원 정보   ",newMember.toString());
+                Log.d("회원 정보   ",member.toString());
                 startActivity(new Intent(UpdateActivity.this, ListActivity.class));
-
-
                 break;
             case R.id.btList:
-                startActivity(new Intent(UpdateActivity.this, DetailActivity.class));
+
+                Intent intent = new Intent(UpdateActivity.this, DetailActivity.class);
+                intent.putExtra("id", member.getId());
+                startActivity(intent);
                 break;
         }
     }

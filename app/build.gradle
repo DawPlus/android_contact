@@ -9,6 +9,7 @@ android {
         minSdkVersion 23
         targetSdkVersion 23
         versionCode 1
+        multiDexEnabled true
         versionName "1.0"
     }
     buildTypes {
@@ -16,6 +17,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
     }
 }
 

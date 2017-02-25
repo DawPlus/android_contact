@@ -13,6 +13,7 @@ import com.hanbit.app.contactapp.R;
 import com.hanbit.app.contactapp.domain.MemberBean;
 import com.hanbit.app.contactapp.service.MemberService;
 import com.hanbit.app.contactapp.service.MemberServiceImpl;
+import com.hanbit.app.contactapp.utill.Phone;
 
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,6 +25,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     ImageView ivProfile;
     String id;
 
+    Phone phone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +34,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
         // Intent
         Intent intent = this.getIntent();
-        id = intent.getExtras().getString("member_id");
+        id = intent.getExtras().getString("id");
         member = new MemberBean();
 
         // Service
@@ -44,6 +47,8 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
 
         // Activity 초기화
+        phone = new Phone(this, this);
+
         btUpdate = (Button) findViewById(R.id.btUpdate);
         btList = (Button) findViewById(R.id.btList);
 
@@ -91,9 +96,16 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
 
             case R.id.btnMessage:
+
+                Intent smsIntent = new Intent(DetailActivity.this, MessageActivity.class);
+                smsIntent.putExtra("phone", member.getPhone());
+                startActivity(smsIntent);
+
                 break;
 
             case R.id.btPhone:
+                Toast.makeText(this, "Test", Toast.LENGTH_LONG);
+                phone.directCall("tel:"+member.getPhone());
                 break;
 
             case R.id.btLocation:

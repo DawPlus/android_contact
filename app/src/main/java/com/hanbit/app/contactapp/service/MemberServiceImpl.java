@@ -50,7 +50,6 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void update(MemberBean bean) {
         dao.update(bean);
-
     }
 
     @Override

@@ -45,7 +45,7 @@ public class ListActivity extends AppCompatActivity {
 
                 //Intent
                 Intent intent = new Intent(ListActivity.this, DetailActivity.class);
-                intent.putExtra("member_id", member.getId());
+                intent.putExtra("id", member.getId());
 
                 startActivity(intent);
 
